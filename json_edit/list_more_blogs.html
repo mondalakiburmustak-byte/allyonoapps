@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>List More Blogs on allyonoapps.xyz</title>
+    <style>
+        body {
+            user-select: none;
+            width: 100vw;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            font-size: large;
+        }
+
+        .container {
+            min-width: none;
+            width: 80%;
+            margin: 20px auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            border: none;
+            background: #007bff;
+            color: #fff;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:disabled {
+            background: #aaa;
+        }
+
+        .success {
+            color: green;
+            text-align: center;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div id="fileStep">
+            <h2>Select JSON File</h2>
+            <input type="file" id="jsonFileInput" accept="application/json">
+            <button onclick="loadJsonFile()">Load File</button>
+            <div id="fileError" style="color:red; margin-top:10px;"></div>
+        </div>
+        <form id="detailsForm" class="hidden">
+            <h2>Add Blog Page Details</h2>
+            <div style="margin-bottom:10px; font-weight:bold;">This Blog ID Will Be: <span id="nextAppId">1</span></div>
+            <label>Name of the blog</label><input type="text" id="blogName">
+            <label>Content</label><textarea id="blogContent" rows="4" maxlength="115"></textarea>
+            <label>Logo's name</label><input type="text" id="logoName" placeholder="e.g. logo_name.png/logo_name.jpg">
+            <label>Date of Publish</label><input type="text" id="blogDate">
+            <label>Link to the blog</label><input type="text" id="blogLink" placeholder="e.g. first_blog.html">
+            <button type="button" onclick="addDetails()">Add Details</button>
+            <div id="addSuccess" class="success"></div>
+        </form>
+        <div id="afterAddBtns" class="hidden" style="text-align:center;">
+            <button onclick="showFormAgain()">Add More</button>
+            <button onclick="downloadJson()">Download JSON</button>
+        </div>
+    </div>
+    <script>
+        let jsonData = [];
+        let jsonFileName = "";
+
+        function loadJsonFile() {
+            const fileInput = document.getElementById('jsonFileInput');
+            if (!fileInput.files[0]) {
+                document.getElementById('fileError').innerText = "Please select a json file first.";
+                return;
+            }
+            const reader = new FileReader();
+            jsonFileName = fileInput.files[0].name;
+            reader.onload = function (e) {
+                try {
+                    jsonData = JSON.parse(e.target.result);
+                    if (!Array.isArray(jsonData)) throw "Invalid format";
+                    document.getElementById('fileStep').classList.add('hidden');
+                    document.getElementById('detailsForm').classList.remove('hidden');
+                    updateNextAppId();
+                } catch {
+                    document.getElementById('fileError').innerText = "Invalid JSON file.";
+                }
+            };
+            reader.readAsText(fileInput.files[0]);
+        }
+        function addDetails() {
+            const title = document.getElementById('blogName').value.trim();
+            const blogContent = document.getElementById('blogContent').value.trim();
+            const logoName = document.getElementById('logoName').value.trim();
+            const blogDate = document.getElementById('blogDate').value.trim();
+            const blogLink = document.getElementById('blogLink').value.trim();
+            if (!blogName || !blogContent || !logoName || !blogDate || !blogLink) {
+                document.getElementById('addSuccess').innerText = "Please fill all fields.";
+                return;
+            }
+            const newId = jsonData.length ? Math.max(...jsonData.map(j => j.id || 0)) + 1 : 1;
+            jsonData.push({
+                id: newId,
+                title : title,
+                content : blogContent,
+                link : blogLink,
+                logo : logoName,
+                date : blogDate,
+            });
+            document.getElementById('detailsForm').classList.add('hidden');
+            document.getElementById('afterAddBtns').classList.remove('hidden');
+            document.getElementById('addSuccess').innerText = "";
+            document.getElementById('detailsForm').reset();
+        }
+        function showFormAgain() {
+            document.getElementById('detailsForm').classList.remove('hidden');
+            document.getElementById('afterAddBtns').classList.add('hidden');
+            updateNextAppId();
+        }
+        function updateNextAppId() {
+            const nextId = jsonData.length ? Math.max(...jsonData.map(j => j.id || 0)) + 1 : 1;
+            document.getElementById('nextAppId').innerText = nextId;
+        }
+        function downloadJson() {
+            const blob = new Blob([JSON.stringify(jsonData, null, 2)], { type: 'application/json' });
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = 'blogs.json';
+            a.click();
+        }
+    </script>
+</body>
+
+</html>
