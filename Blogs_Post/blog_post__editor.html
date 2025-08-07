@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Blog Editor Tool</title>
+  <style>
+    body {
+      user-select: none;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #eaeaea;
+      width: 100vw;
+    }
+
+    .hidden {
+      width: 100%;
+    }
+
+    .form-group {
+      margin-bottom: 10px;
+    }
+
+    .blog-form {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input,
+    textarea {
+      width: 96%;
+      padding: 6px;
+      margin-bottom: 10px;
+    }
+
+    button {
+      padding: 10px 15px;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+
+    #codeArea {
+      width: 85%;
+      height: fit-content;
+      border: 2px solid #00000040;
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px 1px #0000004c;
+      font-size: large;
+      user-select: all;
+    }
+
+    #formsArea {
+      width: 85%;
+    }
+
+    #formLoader {
+      display: flex;
+      justify-content: center;
+    }
+
+    #loadBtn,
+    .genBtn {
+      background-color: rgb(122, 240, 255);
+      border: 0.5px solid rgba(44, 30, 30, 0.534);
+      border-radius: 10px;
+      box-shadow: inset 1px 1px 5px 1px #00000081;
+      font-size: medium;
+      color: rgb(26, 97, 228);
+    }
+
+    #loadBtn:hover,
+    #loadBtn:focus {
+      box-shadow: 1px 1px 5px 1px #00000081;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="formContainer" class="hidden">
+    <div id="formsArea">
+    </div>
+    <div id="formLoader">
+      <button id="loadBtn" onclick="addBlogForm();">
+        Load Blog Edit Form
+      </button>
+      <button id="genBtn" class="genBtn" onclick="generateFile()" hidden>
+        Generate Code
+      </button>
+      <!-- Add this button just after Generate Code button -->
+      <button id="copyBtn" class="genBtn" onclick="copyCode()" hidden>
+        Copy Text
+      </button>
+
+    </div>
+
+  </div>
+  <div id="codeArea" hidden>
+    <code id="emmetCode">
+    </code>
+  </div>
+
+
+  <script>
+    let originalHTML = "";
+    const currentMonthYear = new Date().toLocaleString('default', { month: 'long', year: 'numeric' });
+
+
+
+    function addBlogForm() {
+      const container = document.createElement('div');
+      container.className = 'blog-form';
+      container.innerHTML = `
+        <div class="form-group">
+          <label>Blog Title:</label>
+          <input type="text" class="title">
+        </div>
+        <div class="form-group">
+          <label>Description:</label>
+          <textarea class="description" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+          <label>Image File Name (e.g., image.png):</label>
+          <input type="text" class="image">
+        </div>
+        <div class="form-group">
+          <label>Date (e.g., August 2025):</label>
+          <input type="text" class="date" value="${currentMonthYear}">
+        </div>
+        <div class="form-group">
+          <label>Blog Post HTML File Name (e.g., post2.html):</label>
+          <input type="text" class="link">
+        </div>
+      `;
+      document.getElementById('formsArea').appendChild(container);
+      document.getElementById("genBtn").hidden = false;
+      document.getElementById("loadBtn").hidden = true;
+    }
+
+    function generateFile() {
+      const forms = document.querySelectorAll('.blog-form');
+      let blogCards = '';
+
+      forms.forEach(form => {
+        const title = form.querySelector('.title').value.trim();
+        const description = form.querySelector('.description').value.trim();
+        const image = form.querySelector('.image').value.trim();
+        const date = form.querySelector('.date').value.trim();
+        const link = form.querySelector('.link').value.trim();
+
+        if (!title || !description || !image || !date || !link) return;
+
+        blogCards += `
+  <article class="blog-card">
+    <a href="${link}" class="blog-card-link">
+      <img src="${image}" alt="${title}" class="blog-card-image" />
+      <div class="blog-card-content">
+        <h3 class="blog-card-title">${title}</h3>
+        <p class="blog-card-excerpt">${description}</p>
+        <div class="blog-card-meta">
+          <span class="blog-card-date">${date}</span>
+          <span class="blog-card-readmore">Read More &rarr;</span>
+        </div>
+      </div>
+    </a>
+  </article>`;
+      });
+      document.getElementById("codeArea").hidden = false;
+      document.getElementById("emmetCode").innerText = blogCards;
+      document.getElementById("copyBtn").hidden = false;
+      
+
+
+    }
+    function copyCode() {
+      const code = document.getElementById("emmetCode").innerText;
+      navigator.clipboard.writeText(code).then(() => {
+        if (code = "") {
+          alert("Abe Yaar Kuch to likh le.... :)");
+          return;
+        } if (code != "") {
+          alert("Code copied to clipboard!");
+        }
+        
+      }).catch(err => {
+        console.error("Failed to copy code: ", err);
+      });
+    }
+
+  </script>
+</body>
+
+</html>

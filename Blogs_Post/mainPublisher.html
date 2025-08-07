@@ -1,0 +1,36 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Blog Post Page Generator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/blogs.css">
+</head>
+<body>
+  <form id="blogForm">
+    <h1>Create a Blog Post HTML Page</h1>
+    <label>Main Title: <input type="text" id="mainTitle"></label>
+    <label>Title Color: <input type="text" id="titleColor" placeholder="e.g. blue or #005555" value="#005555">
+      <input type="color" onchange="this.previousElementSibling.value = this.value"></label>
+    <label>Publish Date: <input type="date" id="publishDate"></label>
+    <label>Image Name (with extension): <input type="text" id="imageName" placeholder="e.g., header.jpg; image.png etc."></label>
+
+    <div id="sectionsContainer"></div>
+
+    <button type="button" onclick="addSection()">Add Section</button>
+    <button type="submit">Generate</button>
+
+    <datalist id="colorList">
+      <option value="red"><option value="blue"><option value="green">
+      <option value="black"><option value="white"><option value="gray">
+    </datalist>
+  </form>
+
+  <script src="js/blogGenerator.js"></script>
+  <script>
+    const today = new Date().toISOString().split('T')[0]; // Format: YYYY-MM-DD
+    document.getElementById('publishDate').value = today;
+  </script>
+</body>
+</html>
