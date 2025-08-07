@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Panel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="./header_admin/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./header_admin/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./header_admin/favicon-16x16.png">
+    <link rel="manifest" href="./header_admin/site.webmanifest">
+  <style>
+    /* Reset and Base */
+    * {
+      user-select: none;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f7fa;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header,
+    footer {
+      background-color: #1f2937;
+      color: white;
+      padding: 15px 30px;
+      text-align: center;
+    }
+
+    main {
+      flex: 1;
+      padding: 30px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .admin-profile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+
+    .admin-profile img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #3b82f6;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .admin-profile h2 {
+      margin-top: 15px;
+      font-size: 1.5rem;
+      color: #111827;
+    }
+
+    .admin-actions {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      width: 100%;
+      max-width: 900px;
+    }
+
+    .action-card {
+      background-color: white;
+      padding: 20px;
+      text-align: center;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      text-decoration: none;
+      color: #333;
+    }
+
+    .action-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      background-color: #f0f9ff;
+    }
+
+    .action-card h3 {
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+      color: #1d4ed8;
+    }
+
+    footer {
+      padding-bottom: 65px;
+      font-size: 0.9rem;
+    }
+
+    nav{
+      position:fixed;
+      float: right;
+      bottom: 0px;
+      padding: 10px;
+      height: 7%;
+      max-height: 50px;
+      z-index: 1000;
+      display: flex;
+      width: 100%;
+      justify-content: row;
+      align-items: center;
+      background-color: rgba(1, 22, 30, 0.708);
+      backdrop-filter: blur(2.5px);
+
+    }
+    nav a{
+      text-align: center;
+      text-decoration: none;
+      color: rgb(248, 248, 248);
+      width: 20%;
+      border-right: 1px solid #fff;
+    }
+    nav a:hover{
+      background-color: #ffffff30;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Admin Panel Tools & Edits</h1>
+  </header>
+  <nav id="navLinks">
+    <a href="index.html">
+      <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:6px;">
+        <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+        <polyline points="9,22 9,12 15,12 15,22"></polyline>
+      </svg>
+    </a>
+    <a href="disclaimer.html">
+      <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:6px;">
+          <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z">
+          </path>
+          <line x1="12" y1="9" x2="12" y2="13"></line>
+          <line x1="12" y1="17" x2="12.01" y2="17"></line>
+      </svg>
+  </a>
+  <a href="blogs.html">
+    <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:6px;">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+        <polyline points="14,2 14,8 20,8"></polyline>
+        <line x1="16" y1="13" x2="8" y2="13"></line>
+        <line x1="16" y1="17" x2="8" y2="17"></line>
+        <polyline points="10,9 9,9 8,9"></polyline>
+    </svg>
+    </a>
+    <a href="contact.html">
+      <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:6px;">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+          <polyline points="22,6 12,13 2,6"></polyline>
+      </svg>
+  </a>
+  <a href="about.html" style="border-right: none;">
+    <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:6px;">
+        <circle cx="12" cy="12" r="10"></circle>
+        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+        <line x1="12" y1="17" x2="12.01" y2="17"></line>
+    </svg>
+</a>
+  </nav>
+
+  <main>
+    <div class="admin-profile">
+      <img src="./images/akibur.jpeg" alt="Admin Photo" />
+      <h2>Welcome Back, Akibur 😃</h2>
+    </div>
+
+    <div class="admin-actions">
+      <a href="./json_edit/List_More_Apps.html" class="action-card">
+        <h3>List More Apps</h3>
+        <p>List more apps on home page with your referral.</p>
+      </a>
+      <a href="./Blogs_Post/mainPublisher.html" class="action-card">
+        <h3>Create Blog</h3>
+        <p>Create new Blog webpage html with varius section & content.</p>
+      </a>
+      <a href="./json_edit/list_more_blogs.html" class="action-card">
+        <h3>Link Blog Page</h3>
+        <p>Link your new blog html file in Main blog list.</p>
+      </a>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2025 Akibur Mustak Mondal | Designed by Ganesh Kaity <br>
+    <a href="allyonoapps.xyz" style="color: blue;text-decoration: none; " >allyonoapps.xyz</a>
+  </footer>
+
+</body>
+
+</html>
