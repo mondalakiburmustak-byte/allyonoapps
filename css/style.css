@@ -1,0 +1,479 @@
+/* Modern footer link buttons */
+.footer-link-btn {
+    background: #0382ac1f;
+    color: #fff;
+    padding: 8px 18px;
+    border-radius: 22px;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    border: none;
+    display: inline-block;
+}
+
+.footer-link-btn:hover {
+    background: #0727326c;
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(3, 130, 172, 0.15);
+    text-decoration: none;
+}
+
+#closeSearchBtn {
+    background: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+    transition: box-shadow 0.2s;
+    margin-left: 4px;
+}
+
+#closeSearchBtn:hover {
+    box-shadow: 0 4px 12px rgba(211, 47, 47, 0.15);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    user-select: none;
+    scrollbar-width: thin;
+}
+
+body {
+    background: #f4f7f8;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(90deg, #005555, #00a1a1);
+    color: white;
+    padding: 10px 20px;
+    z-index: 1010;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+}
+
+
+.logo {
+    font-size: 22px;
+    font-weight: 700;
+    display: flex;
+}
+
+.logo img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    border-radius: 10px;
+    padding: 0;
+}
+
+nav {
+    z-index: 1010;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 15px;
+    font-size: 16px;
+    padding: 10px 15px;
+    transition: all 0.2s ease;
+}
+
+nav a:hover {
+    background: #007a7ad2;
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.banner {
+  width: 100%;
+  aspect-ratio: 1024 / 214;
+  margin: 0 auto;
+  overflow: hidden;
+  display: flex;
+}
+
+.banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill; /* or use 'cover' / 'contain' depending on your preference */
+  display: block;
+}
+
+
+
+.apps {
+    padding: 20px;
+}
+
+.apps h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.app-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.app-card {
+    background: white;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    transition: transform 0.2s;
+}
+
+.app-card:hover {
+    transform: scale(1.02);
+}
+
+.app-card img {
+    width: 80px;
+    height: 80px;
+    border-radius: 15px;
+    margin-right: 15px;
+}
+
+.app-card h3 {
+    margin-bottom: 5px;
+}
+
+.app-card p {
+    font-size: 14px;
+    color: #555;
+}
+
+.app-card a {
+    display: inline-block;
+    margin-top: 5px;
+    background: #00b386;
+    color: white;
+    padding: 6px 14px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background 0.3s;
+}
+
+.app-card a:hover {
+    background: #028463;
+}
+
+/* Floating buttons for ChatsApp and Telegram */
+.floating-btns {
+    position: fixed;
+    bottom: 100px;
+    right: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    z-index: 999;
+}
+
+.float-btn {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    color: #0382ac;
+    border-radius: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    padding: 10px 18px;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+}
+
+.float-btn:hover {
+    background: #ace5f8;
+    color: #fff;
+}
+
+.chatsapp-btn img {
+    filter: invert(0.4) sepia(1) saturate(5) hue-rotate(90deg);
+
+}
+
+.telegram-btn img {
+    filter: invert(0.4) sepia(1) saturate(5) hue-rotate(180deg);
+
+}
+
+.chatsapp-btn {
+    color: #108610;
+    border: 1px solid #108610;
+    box-shadow: 0px 0px 10px 2px #108610;
+}
+
+.telegram-btn {
+    color: #108610;
+    border: 1px solid #0088cc;
+    box-shadow: 0px 0px 10px 2px #0088cc;
+}
+.share-btn{
+    color: #c0ad1f;
+    border: 1px solid #c0ad1f;
+    box-shadow: 0px 0px 10px 2px #c0ad1f;
+}
+
+@media (max-width: 600px) {
+    .floating-btns {
+        right: 8px;
+        bottom: 150px;
+    }
+
+    .float-btn {
+        padding: 8px 12px;
+        font-size: 15px;
+    }
+}
+
+/* Mobile Responsive */
+@media (max-width: 878px) {
+    nav {
+        display: none;
+        flex-direction: column;
+        background: #0080807f;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        width: 200px;
+        padding: 10px 12px;
+        transition: all 0.3s ease;
+    }
+
+    nav a {
+        margin: 10px 0;
+        border-bottom: 1px solid #00000023;
+    }
+
+    nav a:hover {
+        background: #007a7a38;
+    }
+
+    nav.active {
+        display: flex;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .moveVw1 {
+        display: none;
+    }
+
+    .moveVw2 {
+        display: block;
+    }
+}
+
+#reddish {
+    color: rgb(190, 16, 16);
+}
+
+span {
+    color: rgb(47, 165, 8);
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(45deg, #005555, #018c8c);
+    color: #ffffffdd;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    margin-top: auto;
+    width: 100%;
+    position: relative;
+}
+
+.headng {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0px;
+}
+
+#showSearchBtn {
+    float: right;
+    background: #fff;
+    border: none;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    min-width: 70px;
+    width: max-content;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 1px 2px 5px #00000026;
+    cursor: pointer;
+}
+
+#showSearchBtn:hover {
+    box-shadow: 1px 2px 5px #0000004d;
+    background: #f0f0f0;
+}
+
+#closeSearchBtn:hover {
+    box-shadow: 1px 2px 5px #0000004d;
+    background: #ffb2b2;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.marquee-panel {
+    width: 100%;
+    overflow: hidden;
+    background: #f7f7f7;
+    border-radius: 8px;
+    margin: 0 auto 24px auto;
+    max-width: 700px;
+    border: 1px solid #eee;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.marquee-text {
+    display: inline-block;
+    white-space: nowrap;
+    font-size: 14px;
+    color: #037652;
+    padding: 8px 0;
+    animation: marquee-slide 30s linear infinite;
+}
+
+@keyframes marquee-slide {
+    0% {
+        transform: translateX(50%);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+#tagTtl {
+    font-weight: bold;
+    margin: 0 12px;
+}
+
+#tagHldr {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 12px 0;
+}
+
+.telegram-btn:hover {
+    background: #daf2fe;
+    color: #fff;
+}
+
+/* Modern Compact Tags Section */
+.modern-tags-container {
+    max-width: 90vw;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+.modern-tags-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    gap: 8px;
+}
+
+.modern-tags-header svg {
+    width: 16px;
+    height: 16px;
+    color: #0382ac;
+}
+
+.modern-tags-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+}
+
+.modern-tags-marquee {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 8px 12px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.modern-tags-content {
+    display: inline-block;
+    white-space: nowrap;
+    font-size: 12px;
+    color: #555;
+    animation: modern-marquee 25s linear infinite;
+    padding: 2px 0;
+}
+
+@keyframes modern-marquee {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+.modern-tags-content span {
+    color: #0382ac;
+    font-weight: 500;
+    margin-right: 20px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .modern-tags-container {
+        padding: 0 15px;
+        margin: 15px auto;
+    }
+    
+    .modern-tags-marquee {
+        padding: 6px 10px;
+    }
+    
+    .modern-tags-content {
+        font-size: 11px;
+    }
+}
